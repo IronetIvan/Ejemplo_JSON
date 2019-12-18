@@ -5,6 +5,7 @@
  */
 package ejemplo_json;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +15,9 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
+import ejemplo_json.Pelicula;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -24,8 +28,8 @@ public class Entrada {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws MalformedURLException, IOException, JSONException {
-        String linkurl = "https://api.themoviedb.org/3/movie/now_playing?api_key=4ef66e12cddbb8fe9d4fd03ac9632f6e&language=en-US&page=1";
+    public static void main(String[] args) {
+        /*String linkurl = "https://api.themoviedb.org/3/movie/now_playing?api_key=4ef66e12cddbb8fe9d4fd03ac9632f6e&language=en-US&page=1";
         URL url = new URL(linkurl);
         HttpURLConnection httpConecction = (HttpURLConnection) url.openConnection();
         BufferedReader lector = new BufferedReader(new InputStreamReader(httpConecction.getInputStream()));
@@ -40,11 +44,22 @@ public class Entrada {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject object = (JSONObject) jsonArray.get(i);
-            String titulo = object.getString("original_title");//preguntamos por lo que nos interesa sacar
-            String descripcion = object.getString("overview");
-            System.out.printf("Titulo: %s %n Descripcion: %s %n",titulo,descripcion);
+            //String titulo = object.getString("original_title");//preguntamos por lo que nos interesa sacar
+            //String descripcion = object.getString("overview");
+            //Pelicula = new Pelicula(titulo, descripcion);
+            Gson gson = new Gson();
+            Pelicula p = gson.fromJson(object.toString(), Pelicula.class);
+            System.out.println(p.getOriginal_title());
         }
 
-    }
+    }*/
 
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Ventana v = new Ventana() ;
+
+            }
+        });
+    }
 }
